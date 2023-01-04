@@ -1,0 +1,14 @@
+
+.fullSocialBar {
+    width: 300px;
+    background-color: rgb(255, 250, 183);
+    height: 20px;
+    border-radius: 20px;
+    margin-top: 20px;
+}
+
+.socialLevel {
+    background-color: rgb(213, 209, 146);
+    height: 20px;
+    border-radius: 20px;
+}

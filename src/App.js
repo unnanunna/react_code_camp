@@ -1,24 +1,23 @@
-import logo from './logo.svg';
+
 import './App.css';
+import HungerBar from './components/Hunger/HungerBar';
+import ThirstBar from './components/Thirst/ThirstBar';
+import SocialBar from './components/Social/SocialBar';
 
 function App() {
+  const hungerLevel = '90';
+  const thirstLevel = '70';
+  const socialLevel = '40'
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <div className="App" >
+        <div style={{paddingTop: '100px', paddingLeft: '100px'}}>
+          <HungerBar hungerLevel={hungerLevel}/>
+          <ThirstBar thirstLevel={thirstLevel}/>
+          <SocialBar socialLevel={socialLevel}/>
+        </div>
+      </div>
+    
   );
 }
 

@@ -1,0 +1,13 @@
+
+.fullHungerBar {
+    width: 300px;
+    background-color: rgb(255, 183, 242);
+    height: 20px;
+    border-radius: 20px;
+}
+
+.hungerLevel {
+    background-color: rgb(192, 123, 179);
+    height: 20px;
+    border-radius: 20px;
+}

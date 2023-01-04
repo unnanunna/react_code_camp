@@ -1,0 +1,14 @@
+
+.fullThirstBar {
+    width: 300px;
+    background-color: rgb(255, 203, 148);
+    height: 20px;
+    border-radius: 20px;
+    margin-top: 20px;
+}
+
+.thirstLevel {
+    background-color: rgb(209, 159, 106);
+    height: 20px;
+    border-radius: 20px;
+}
