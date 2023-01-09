@@ -9,6 +9,9 @@ import 'react-toastify/dist/ReactToastify.css';
 
 function App() { //to-do: move button functionalities to components
 
+  //to-do: restrain need bars from going below 0, fix thirst bar
+  //to-do: notice that if bar  
+
   //need bar starting levels
   const[hungerLevel, setHunger] = React.useState(90);
   const[thirstLevel, setThirst] = React.useState(70);
@@ -16,17 +19,25 @@ function App() { //to-do: move button functionalities to components
 
   //food button
   const giveFood = () => {
-        setHunger(hungerLevel + 2); //set correct level changes to all
+        setHunger(hungerLevel + 2); //to-do: set correct level changes to all the buttons
   }
 
   const notifyFood = () => {
-    toast("Hulbert is full!");
+    toast("Hulbert is going to burst!");
   }
 
   //snack button
+  /*to-do:
+  -button listener, if too many snacks have been given repeatedly --> at least hunger level goes down
+  -if-case happens --> notifySnack */
   const giveSnack = () => {
-    setHunger(hungerLevel + 1); //to-do: if too many snacks --> social/hunger? bars go down
-} //uses same notification as food
+    setHunger(hungerLevel + 1);
+} //uses same notification as food if full
+
+/*
+const notifySnack = () => {
+  toast("Hulbert feels ill from all the snacks :(");
+}*/
 
 
   //drink button
@@ -35,13 +46,17 @@ function App() { //to-do: move button functionalities to components
 }
 
 const notifyDrink = () => {
-toast("Hulbert can't drink more!");
+toast("Ugh, Hubert feels bloated from all the drinking.");
 }
 
   //milk button
   const giveMilk = () => {
-    setThirst(thirstLevel + 1);
+    setThirst(thirstLevel - 5); //to-do: does it affect other levels too?
 }
+
+const notifyMilk = () => {
+  toast("Uh-oh, are you sure that milk is good for hedgehogs?");
+  }
 
 
 //play button
@@ -49,14 +64,18 @@ const givePlay = () => {
   setSocial(socialLevel + 2);
 }
 
-const notifySocial = () => {
-toast("Hulbert feels suffocated by your love!");
+const notifyPlay = () => {
+toast("Hulbert wants some time alone...");
 }
 
 //pet button
 const givePet = () => {
   setSocial(socialLevel + 1);
 }
+
+const notifyPet = () => {
+  toast("Hulbert feels suffocated by your love!");
+  }
 
 //to-do: make buttons' placements dependent on need bars
   return (
@@ -71,10 +90,10 @@ const givePet = () => {
             <button type='button' onClick={hungerLevel < 100 ? giveSnack : notifyFood}>Snack</button>
 
             <button type='button' onClick={thirstLevel < 100 ? giveDrink : notifyDrink}>Drink</button>
-            <button type='button' onClick={thirstLevel < 100 ? giveMilk : notifyDrink}>Milk</button>
+            <button type='button' onClick={thirstLevel < 100 ? giveMilk : notifyMilk}>Milk</button>
 
-            <button type='button' onClick={socialLevel < 100 ? givePlay : notifySocial}>Play</button>
-            <button type='button' onClick={socialLevel < 100 ? givePet : notifySocial}>Pet</button>
+            <button type='button' onClick={socialLevel < 100 ? givePlay : notifyPlay}>Play</button>
+            <button type='button' onClick={socialLevel < 100 ? givePet : notifyPet}>Pet</button>
           
         </div>
         <ToastContainer className={'comment'}
