@@ -11,7 +11,8 @@ import DrinkButton from './components/Buttons/Drink/DrinkButton'
 function App() { //to-do: move button functionalities to components
 
   //to-do: restrain need bars from going below 0, fix thirst bar
-  //to-do: notice that if bar  
+  //to-do: if food level etc. is 99, it can go up to 101 --> fix
+  const [snackCount, setCount] = React.useState(0);  
 
   //need bar starting levels
   const[hungerLevel, setHunger] = React.useState(90);
@@ -28,19 +29,22 @@ function App() { //to-do: move button functionalities to components
   }
 
   //snack button
-  /*to-do:
-  -button listener, if too many snacks have been given repeatedly --> at least hunger level goes down
-  -if-case happens --> notifySnack */
   const giveSnack = () => {
-    setHunger(hungerLevel + 1);
-} //uses same notification as food if full
+    setCount(snackCount + 1);
+    if (snackCount > 3) {
+      setHunger(hungerLevel - 5);
+    } else if (hungerLevel < 100) {
+      setHunger(hungerLevel + 1);
+    }   
+}
 
-/*
 const notifySnack = () => {
-  toast("Hulbert feels ill from all the snacks :(");
-}*/
-
-
+  if (snackCount > 3) {
+    toast("Hulbert feels ill from all the snacks :(");
+  } else if (hungerLevel >= 100 ) {
+    toast("Hulbert is going to burst!");
+  }
+}
 
 
   //milk button
@@ -56,6 +60,7 @@ const notifyMilk = () => {
 //play button
 const givePlay = () => {
   setSocial(socialLevel + 2);
+  setHunger(hungerLevel - 2);
 }
 
 const notifyPlay = () => {
@@ -84,7 +89,13 @@ const notifyPet = () => {
         </div>
         <div style={{paddingTop: '100px', paddingLeft: '600px'}}>
             <button type='button' onClick={hungerLevel < 100 ? giveFood : notifyFood}>Food</button>
-            <button type='button' onClick={hungerLevel < 100 ? giveSnack : notifyFood}>Snack</button>
+            <button onClick={() => {
+              giveSnack();
+              notifySnack();
+            }}
+            >
+              Snack
+            </button>
 
             <DrinkButton thirstLevel={thirstLevel} setThirst={setThirst}/>
             <button type='button' onClick={thirstLevel < 100 ? giveMilk : notifyMilk}>Milk</button>
