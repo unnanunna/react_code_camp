@@ -6,11 +6,13 @@ import ThirstBar from './components/NeedBars/Thirst/ThirstBar';
 import SocialBar from './components/NeedBars/Social/SocialBar';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import DrinkButton from './components/Buttons/Drink/DrinkButton'
 
 function App() { //to-do: move button functionalities to components
 
   //to-do: restrain need bars from going below 0, fix thirst bar
-  //to-do: notice that if bar  
+  //to-do: if food level etc. is 99, it can go up to 101 --> fix
+  const [snackCount, setCount] = React.useState(0);  
 
 
   //need bar starting levels
@@ -29,27 +31,23 @@ function App() { //to-do: move button functionalities to components
   }
 
   //snack button
-  /*to-do:
-  -button listener, if too many snacks have been given repeatedly --> at least hunger level goes down
-  -if-case happens --> notifySnack */
   const giveSnack = () => {
-    setHunger(hungerLevel + 1);
-} //uses same notification as food if full
+    setCount(snackCount + 1);
+    if (snackCount > 3) {
+      setHunger(hungerLevel - 5);
+    } else if (hungerLevel < 100) {
+      setHunger(hungerLevel + 1);
+    }   
+}
 
-/*
 const notifySnack = () => {
-  toast("Hulbert feels ill from all the snacks :(");
-}*/
-
-
-  //drink button
-  const giveDrink = () => {
-    setThirst(thirstLevel + 2);
+  if (snackCount > 3) {
+    toast("Hulbert feels ill from all the snacks :(");
+  } else if (hungerLevel >= 100 ) {
+    toast("Hulbert is going to burst!");
+  }
 }
 
-const notifyDrink = () => {
-toast("Ugh, Hubert feels bloated from all the drinking.");
-}
 
   //milk button
 const giveMilk = () => {
@@ -64,6 +62,7 @@ const notifyMilk = () => {
 //play button
 const givePlay = () => {
   setSocial(socialLevel + 2);
+  setHunger(hungerLevel - 2);
 }
 
 const notifyPlay = () => {
@@ -82,6 +81,9 @@ const notifyPet = () => {
 //to-do: make buttons' placements dependent on need bars
   return (
       <div className="App" >
+        <div class="header">
+        <h1>Hulbert the Hedgehog</h1>
+        </div>
         <div style={{paddingTop: '100px', paddingLeft: '100px'}}>
           <HungerBar hungerLevel={hungerLevel} setHunger={setHunger}/>
           <ThirstBar thirstLevel={thirstLevel} setThirst={setThirst}/>
@@ -89,14 +91,21 @@ const notifyPet = () => {
         </div>
         <div style={{paddingTop: '100px', paddingLeft: '600px'}}>
             <button type='button' onClick={hungerLevel < 100 ? giveFood : notifyFood}>Food</button>
-            <button type='button' onClick={hungerLevel < 100 ? giveSnack : notifyFood}>Snack</button>
+            <button onClick={() => {
+              giveSnack();
+              notifySnack();
+            }}
+            >
+              Snack
+            </button>
 
-            <button type='button' onClick={thirstLevel < 100 ? giveDrink : notifyDrink}>Drink</button>
+            <DrinkButton thirstLevel={thirstLevel} setThirst={setThirst}/>
             <button type='button' onClick={thirstLevel < 100 ? giveMilk : notifyMilk}>Milk</button>
 
             <button type='button' onClick={socialLevel < 100 ? givePlay : notifyPlay}>Play</button>
             <button type='button' onClick={socialLevel < 100 ? givePet : notifyPet}>Pet</button>
-          
+
+
         </div>
         <ToastContainer className={'comment'}
         position="bottom-left" 
