@@ -6,6 +6,7 @@ import ThirstBar from './components/NeedBars/Thirst/ThirstBar';
 import SocialBar from './components/NeedBars/Social/SocialBar';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import DrinkButton from './components/Buttons/Drink/DrinkButton'
 
 function App() { //to-do: move button functionalities to components
 
@@ -40,14 +41,7 @@ const notifySnack = () => {
 }*/
 
 
-  //drink button
-  const giveDrink = () => {
-    setThirst(thirstLevel + 2);
-}
 
-const notifyDrink = () => {
-toast("Ugh, Hubert feels bloated from all the drinking.");
-}
 
   //milk button
   const giveMilk = () => {
@@ -89,7 +83,7 @@ const notifyPet = () => {
             <button type='button' onClick={hungerLevel < 100 ? giveFood : notifyFood}>Food</button>
             <button type='button' onClick={hungerLevel < 100 ? giveSnack : notifyFood}>Snack</button>
 
-            <button type='button' onClick={thirstLevel < 100 ? giveDrink : notifyDrink}>Drink</button>
+            <DrinkButton thirstLevel={thirstLevel} setThirst={setThirst} toast={toast}/>
             <button type='button' onClick={thirstLevel < 100 ? giveMilk : notifyMilk}>Milk</button>
 
             <button type='button' onClick={socialLevel < 100 ? givePlay : notifyPlay}>Play</button>
