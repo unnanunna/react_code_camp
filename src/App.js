@@ -12,10 +12,12 @@ function App() { //to-do: move button functionalities to components
   //to-do: restrain need bars from going below 0, fix thirst bar
   //to-do: notice that if bar  
 
+
   //need bar starting levels
   const[hungerLevel, setHunger] = React.useState(90);
   const[thirstLevel, setThirst] = React.useState(70);
   const[socialLevel, setSocial] = React.useState(40);
+
 
   //food button
   const giveFood = () => {
@@ -50,7 +52,7 @@ toast("Ugh, Hubert feels bloated from all the drinking.");
 }
 
   //milk button
-  const giveMilk = () => {
+const giveMilk = () => {
     setThirst(thirstLevel - 5); //to-do: does it affect other levels too?
 }
 
@@ -81,9 +83,9 @@ const notifyPet = () => {
   return (
       <div className="App" >
         <div style={{paddingTop: '100px', paddingLeft: '100px'}}>
-          <HungerBar hungerLevel={hungerLevel}/>
-          <ThirstBar thirstLevel={thirstLevel}/>
-          <SocialBar socialLevel={socialLevel}/>
+          <HungerBar hungerLevel={hungerLevel} setHunger={setHunger}/>
+          <ThirstBar thirstLevel={thirstLevel} setThirst={setThirst}/>
+          <SocialBar socialLevel={socialLevel} setSocial={setSocial}/>
         </div>
         <div style={{paddingTop: '100px', paddingLeft: '600px'}}>
             <button type='button' onClick={hungerLevel < 100 ? giveFood : notifyFood}>Food</button>
