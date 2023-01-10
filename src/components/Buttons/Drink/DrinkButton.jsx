@@ -1,11 +1,13 @@
 import React from "react";
 import './DrinkButton.css';
+import {toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
-const DrinkButton = ({thirstLevel}, {setThirst}, {toast}) => {
+const DrinkButton = ({thirstLevel}, {setThirst}) => {
 
       //drink button
-  const giveDrink = () => {
+    const giveDrink = () => {
     setThirst(thirstLevel + 2);
     }
 

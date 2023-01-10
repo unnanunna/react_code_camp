@@ -83,12 +83,13 @@ const notifyPet = () => {
             <button type='button' onClick={hungerLevel < 100 ? giveFood : notifyFood}>Food</button>
             <button type='button' onClick={hungerLevel < 100 ? giveSnack : notifyFood}>Snack</button>
 
-            <DrinkButton thirstLevel={thirstLevel} setThirst={setThirst} toast={toast}/>
+            <DrinkButton thirstLevel={thirstLevel} setThirst={setThirst}/>
             <button type='button' onClick={thirstLevel < 100 ? giveMilk : notifyMilk}>Milk</button>
 
             <button type='button' onClick={socialLevel < 100 ? givePlay : notifyPlay}>Play</button>
             <button type='button' onClick={socialLevel < 100 ? givePet : notifyPet}>Pet</button>
-          
+
+
         </div>
         <ToastContainer className={'comment'}
         position="bottom-left" 
