@@ -6,8 +6,10 @@ const ThirstBar = ({ thirstLevel, setThirst }) => {
     React.useEffect (() => {
         const interval = setInterval(() => {
 
-            if (thirstLevel > 0) {
+            if (thirstLevel > 0 && thirstLevel != 1) {
                 setThirst(thirstLevel => thirstLevel - 2);
+            } else if (thirstLevel > 0 && thirstLevel == 1) {
+                setThirst(thirstLevel => thirstLevel - 1);
             }
 
         }, 3000)
