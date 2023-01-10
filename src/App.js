@@ -74,6 +74,9 @@ const notifyPet = () => {
 //to-do: make buttons' placements dependent on need bars
   return (
       <div className="App" >
+        <div class="header">
+        <h1>Hulbert the Hedgehog</h1>
+        </div>
         <div style={{paddingTop: '100px', paddingLeft: '100px'}}>
           <HungerBar hungerLevel={hungerLevel}/>
           <ThirstBar thirstLevel={thirstLevel}/>
