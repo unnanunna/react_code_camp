@@ -35,8 +35,8 @@ function App() { //to-do: move button functionalities to components
 
     if (hungerLevel <= 98 ) {
       setHunger(hungerLevel + 2);
-    } else if (hungerLevel <= 99){
-      setHunger(hungerLevel + 1);
+    } else if (98 < hungerLevel){
+      setHunger(100);
     }
 
     changeHulbert(hulbertAte);
@@ -64,8 +64,13 @@ function App() { //to-do: move button functionalities to components
 
     } else if (hungerLevel <= 99) {
       setHunger(hungerLevel + 1);
+<<<<<<< HEAD
 
       changeHulbert(hulbertAte);
+=======
+    } else if (99 < hungerLevel) {
+      setHunger(100);
+>>>>>>> 88560ef39ad3340655b577227fba59936a2d48e2
     }   
 }
 
@@ -84,8 +89,8 @@ const giveDrink = () => {
 
   if (thirstLevel <= 98 ) {
       setThirst(thirstLevel + 2);
-  } else if (thirstLevel <= 99){
-      setThirst(thirstLevel + 1);
+  } else if (98 < thirstLevel){
+      setThirst(100);
   }
 
 }
@@ -118,8 +123,8 @@ const givePlay = () => {
 
   if (socialLevel <= 98 ) {
     setSocial(socialLevel + 2);
-  } else if (socialLevel <= 99){
-    setSocial(socialLevel + 1);
+  } else if (98 < socialLevel){
+    setSocial(100);
   }
 
   if(hungerLevel < 2) {
@@ -141,13 +146,35 @@ const givePet = () => {
 
   if (socialLevel <= 99 ) {
     setSocial(socialLevel + 1);
+  } else if (99 < socialLevel) {
+    setSocial(100);
   }
 
 }
 
 const notifyPet = () => {
-  if (socialLevel >= 99 ) {
+  if (socialLevel >= 99) {
     toast("Hulbert feels suffocated by your love!");
+  }
+}
+
+const dead = () => {
+  if ((hungerLevel <= 0) || (thirstLevel <= 0) || (socialLevel)) {
+    setHunger(0);
+    setThirst(0);
+    setSocial(0);
+  }
+}
+
+const notifyHealth = () => {
+  if (hungerLevel <= 10) {
+    toast("Hulbert is starving, could you give them food?");
+  } else if (thirstLevel <= 10) {
+    toast("Hulbert is thirsty, could you give them something to drink?");
+  } else if (socialLevel <= 10) {
+    toast("Hulbert feels lonely, could you play with them?");
+  } else if ((hungerLevel <= 0) || (thirstLevel <= 0) || (socialLevel)) {
+    toast("Hulbert doesn't feel so good..")
   }
 }
 
