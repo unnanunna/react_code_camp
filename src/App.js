@@ -5,32 +5,41 @@ import HungerBar from './components/NeedBars/Hunger/HungerBar';
 import ThirstBar from './components/NeedBars/Thirst/ThirstBar';
 import SocialBar from './components/NeedBars/Social/SocialBar';
 import happyHulbert from './images/happy.png';
-import food from './images/food.png';
+import hulbertAte from './images/eating.png';
+import sickHulbert from './images/sick.png';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 //import DrinkButton from './components/Buttons/Drink/DrinkButton'
 
 function App() { //to-do: move button functionalities to components
 
-  //to-do: restrain need bars from going below 0, fix thirst bar
-  //to-do: if food level etc. is 99, it can go up to 101 --> fix
   //to-do: warning when some of the bars are below 10
   const [snackCount, setCount] = React.useState(0);  
 
+  const[hulbert_pic, setHulbert] = React.useState(happyHulbert);
 
   //need bar starting levels
   const[hungerLevel, setHunger] = React.useState(90);
   const[thirstLevel, setThirst] = React.useState(70);
   const[socialLevel, setSocial] = React.useState(40);
 
+  const changeHulbert = ( prop ) => {
+    setHulbert( prop );
+
+    setTimeout(() => {setHulbert(happyHulbert)}, 2000);
+  }
+
 
   //food button
   const giveFood = () => {
+
     if (hungerLevel <= 98 ) {
       setHunger(hungerLevel + 2);
     } else if (hungerLevel <= 99){
       setHunger(hungerLevel + 1);
     }
+
+    changeHulbert(hulbertAte);
   }
 
   const notifyFood = () => {
@@ -42,32 +51,43 @@ function App() { //to-do: move button functionalities to components
   //snack button
   const giveSnack = () => { //to-do: reset snackCount after some time or after pressing other buttons certain number
     setCount(snackCount + 1);
+
     if (snackCount > 3) {
+
       if(hungerLevel < 5) {
         setHunger(0)
       } else {
         setHunger(hungerLevel - 5);
       }
+
+      changeHulbert(sickHulbert);
+
     } else if (hungerLevel <= 99) {
       setHunger(hungerLevel + 1);
+
+      changeHulbert(hulbertAte);
     }   
 }
 
 const notifySnack = () => {
+
   if (snackCount > 3) {
     toast("Hulbert feels ill from all the snacks :(");
   } else if (hungerLevel >= 100 ) {
     toast("Hulbert is going to burst!");
   }
+
 }
 
 //drink button
 const giveDrink = () => {
+
   if (thirstLevel <= 98 ) {
       setThirst(thirstLevel + 2);
   } else if (thirstLevel <= 99){
       setThirst(thirstLevel + 1);
   }
+
 }
 
 const notifyDrink = () => {
@@ -78,11 +98,14 @@ const notifyDrink = () => {
 
   //milk button
 const giveMilk = () => { 
+
     if(thirstLevel < 5) {
       setThirst(0); 
     } else {
       setThirst(thirstLevel - 5); 
     }
+
+      changeHulbert(sickHulbert);
   }
 
 const notifyMilk = () => {
@@ -92,6 +115,7 @@ const notifyMilk = () => {
 
 //play button
 const givePlay = () => {
+
   if (socialLevel <= 98 ) {
     setSocial(socialLevel + 2);
   } else if (socialLevel <= 99){
@@ -103,6 +127,7 @@ const givePlay = () => {
   } else {
     setHunger(hungerLevel - 2); 
   }
+
 }
 
 const notifyPlay = () => {
@@ -113,9 +138,11 @@ const notifyPlay = () => {
 
 //pet button
 const givePet = () => {
+
   if (socialLevel <= 99 ) {
     setSocial(socialLevel + 1);
   }
+
 }
 
 const notifyPet = () => {
@@ -131,7 +158,7 @@ const notifyPet = () => {
           <h1>Hulbert the Hedgehog</h1>
         </div>
         <div className='hulbert'> 
-          <img src={happyHulbert}/>
+          <img src={hulbert_pic}/>
         </div>
         <div style={{paddingTop: '100px', paddingLeft: '100px'}}>
           <HungerBar hungerLevel={hungerLevel} setHunger={setHunger}/>
