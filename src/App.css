@@ -34,6 +34,8 @@
 
 .foodBtn {
   position: absolute;
+  right: 300px; 
+  top: 100px;
   cursor: pointer;
   background: url('./images/food.png');
   background-repeat: no-repeat;
@@ -46,9 +48,84 @@
   opacity: 0.8;
 }
 
-.playBtn {
+
+.snackBtn{
+  position: absolute;
+  right: 200px;
+  top: 150px;
   cursor: pointer;
+  /*background: url('./images/snack.png');*/
+  background-repeat: no-repeat;
   height: 65px;
   width: 65px;
   border: none;
 }
+
+.snackBtn:hover {
+  opacity: 0.8;
+}
+
+.drinkBtn {
+  position: absolute;
+  right: 100px;
+  top: 200px;
+  cursor: pointer;
+  /*background: url('./images/drink.png');*/
+  background-repeat: no-repeat;
+  height: 65px;
+  width: 65px;
+  border: none;
+}
+
+.drinkBtn:hover {
+  opacity: 0.8;
+}
+
+.milkBtn {
+  position: absolute;
+  right: 100px;
+  top: 300px;
+  cursor: pointer;
+  /*background: url('./images/milk.png');*/
+  background-repeat: no-repeat;
+  height: 65px;
+  width: 65px;
+  border: none;
+}
+
+.milkBtn:hover {
+  opacity: 0.8;
+}
+
+.petBtn {
+  position: absolute;
+  right: 200px;
+  top: 350px;
+  cursor: pointer;
+  /*background: url('./images/pet.png');*/
+  background-repeat: no-repeat;
+  height: 65px;
+  width: 65px;
+  border: none;
+}
+
+.petBtn:hover {
+  opacity: 0.8;
+}
+
+.playBtn {
+  position: absolute;
+  right: 300px;
+  top: 400px;
+  cursor: pointer;
+  /*background: url('./images/play.png');*/
+  background-repeat: no-repeat;
+  height: 65px;
+  width: 65px;
+  border: none;
+}
+
+.playBtn:hover {
+  opacity: 0.8;
+}
+
