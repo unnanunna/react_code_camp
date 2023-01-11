@@ -5,6 +5,7 @@ import HungerBar from './components/NeedBars/Hunger/HungerBar';
 import ThirstBar from './components/NeedBars/Thirst/ThirstBar';
 import SocialBar from './components/NeedBars/Social/SocialBar';
 import happyHulbert from './images/happy.png';
+import food from './images/food.png';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import DrinkButton from './components/Buttons/Drink/DrinkButton'
@@ -95,7 +96,7 @@ const notifyPet = () => {
           <SocialBar socialLevel={socialLevel} setSocial={setSocial}/>
         </div>
         <div style={{paddingTop: '100px', paddingLeft: '600px'}}>
-            <button type='button' onClick={hungerLevel < 100 ? giveFood : notifyFood}>Food</button>
+            <button className='foodBtn' type='button' onClick={hungerLevel < 100 ? giveFood : notifyFood}></button>
             <button onClick={() => {
               giveSnack();
               notifySnack();
@@ -107,7 +108,7 @@ const notifyPet = () => {
             <DrinkButton thirstLevel={thirstLevel} setThirst={setThirst}/>
             <button type='button' onClick={thirstLevel > 5 ? giveMilk : notifyMilk}>Milk</button>
 
-            <button type='button' onClick={socialLevel < 100 ? givePlay : notifyPlay}>Play</button>
+            <button className='playBtn' type='button' onClick={socialLevel < 100 ? givePlay : notifyPlay}>Play</button>
             <button type='button' onClick={socialLevel < 100 ? givePet : notifyPet}>Pet</button>
 
 

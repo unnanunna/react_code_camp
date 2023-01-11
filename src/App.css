@@ -29,3 +29,26 @@
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-size: 30px;
 }
+
+/*Buttons*/
+
+.foodBtn {
+  position: absolute;
+  cursor: pointer;
+  background: url('./images/food.png');
+  background-repeat: no-repeat;
+  height: 65px;
+  width: 65px;
+  border: none;
+}
+
+.foodBtn:hover {
+  opacity: 0.8;
+}
+
+.playBtn {
+  cursor: pointer;
+  height: 65px;
+  width: 65px;
+  border: none;
+}
