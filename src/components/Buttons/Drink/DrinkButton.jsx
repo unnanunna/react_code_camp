@@ -4,19 +4,25 @@ import {toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 
-const DrinkButton = ({thirstLevel}, {setThirst}) => {
+const DrinkButton = ({thirstLevel, setThirst}) => {
 
       //drink button
     const giveDrink = () => {
-    setThirst(thirstLevel + 2);
+        if (thirstLevel <= 98 ) {
+            setThirst(thirstLevel + 2);
+        } else if (thirstLevel <= 99){
+            setThirst(thirstLevel + 1);
+        }
     }
 
     const notifyDrink = () => {
-    toast("Ugh, Hubert feels bloated from all the drinking.");
+        if (thirstLevel >= 99 ) {
+            toast("Ugh, Hubert feels bloated from all the drinking.");
+        }
     }
 
     return (
-        <button type='button' onClick={thirstLevel < 100 ? giveDrink : notifyDrink}>Drink</button>
+        <button type='button'></button>
     )
 }
 
