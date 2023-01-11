@@ -64,13 +64,10 @@ function App() { //to-do: move button functionalities to components
 
     } else if (hungerLevel <= 99) {
       setHunger(hungerLevel + 1);
-<<<<<<< HEAD
 
       changeHulbert(hulbertAte);
-=======
     } else if (99 < hungerLevel) {
       setHunger(100);
->>>>>>> 88560ef39ad3340655b577227fba59936a2d48e2
     }   
 }
 
@@ -153,7 +150,7 @@ const givePet = () => {
 }
 
 const notifyPet = () => {
-  if (socialLevel >= 99) {
+  if (socialLevel >= 99 ) {
     toast("Hulbert feels suffocated by your love!");
   }
 }
