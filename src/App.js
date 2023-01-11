@@ -140,11 +140,11 @@ const notifyPet = () => {
         </div>
         <div style={{paddingTop: '100px', paddingLeft: '600px'}}>
             <button className='foodBtn' onClick={() => {giveFood(); notifyFood()}}></button>
-            <button className='snackBtn' onClick={() => {giveSnack(); notifySnack()}}>Snack</button>
-            <button className='drinkBtn' onClick={() => {giveDrink(); notifyDrink()}}>Drink</button>
-            <button className='milkBtn' onClick={() => {giveMilk(); notifyMilk()}}>Milk</button>
-            <button className='playBtn' onClick={() => {givePlay(); notifyPlay()}}>Play</button>
-            <button className='petBtn' onClick={() => {givePet(); notifyPet()}}>Pet</button>
+            <button className='snackBtn' onClick={() => {giveSnack(); notifySnack()}}></button>
+            <button className='drinkBtn' onClick={() => {giveDrink(); notifyDrink()}}></button>
+            <button className='milkBtn' onClick={() => {giveMilk(); notifyMilk()}}></button>
+            <button className='playBtn' onClick={() => {givePlay(); notifyPlay()}}></button>
+            <button className='petBtn' onClick={() => {givePet(); notifyPet()}}></button>
         </div>
         <ToastContainer className={'comment'}
         position="bottom-left" 
