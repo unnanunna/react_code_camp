@@ -26,9 +26,9 @@ function App() { //to-do: move button functionalities to components
 
   //food button
   const giveFood = () => {
-    if (hungerLevel <= 98 ) {
+    if (0 < hungerLevel <= 98 ) {
       setHunger(hungerLevel + 2);
-    } else if (hungerLevel <= 99){
+    } else if (98 < hungerLevel <= 99){
       setHunger(hungerLevel + 1);
     }
   }
@@ -48,7 +48,7 @@ function App() { //to-do: move button functionalities to components
       } else {
         setHunger(hungerLevel - 5);
       }
-    } else if (hungerLevel <= 99) {
+    } else if (0 < hungerLevel <= 99) {
       setHunger(hungerLevel + 1);
     }   
 }
@@ -63,9 +63,9 @@ const notifySnack = () => {
 
 //drink button
 const giveDrink = () => {
-  if (thirstLevel <= 98 ) {
+  if (0 < thirstLevel <= 98 ) {
       setThirst(thirstLevel + 2);
-  } else if (thirstLevel <= 99){
+  } else if (98 < thirstLevel <= 99){
       setThirst(thirstLevel + 1);
   }
 }
@@ -92,9 +92,9 @@ const notifyMilk = () => {
 
 //play button
 const givePlay = () => {
-  if (socialLevel <= 98 ) {
+  if (0 < socialLevel <= 98 ) {
     setSocial(socialLevel + 2);
-  } else if (socialLevel <= 99){
+  } else if (98 < socialLevel <= 99){
     setSocial(socialLevel + 1);
   }
 
@@ -113,14 +113,34 @@ const notifyPlay = () => {
 
 //pet button
 const givePet = () => {
-  if (socialLevel <= 99 ) {
+  if (0 < socialLevel <= 99 ) {
     setSocial(socialLevel + 1);
   }
 }
 
 const notifyPet = () => {
-  if (socialLevel >= 99 ) {
+  if (socialLevel >= 99) {
     toast("Hulbert feels suffocated by your love!");
+  }
+}
+
+const dead = () => {
+  if ((hungerLevel <= 0) || (thirstLevel <= 0) || (socialLevel)) {
+    setHunger(0);
+    setThirst(0);
+    setSocial(0);
+  }
+}
+
+const notifyHealth = () => {
+  if (hungerLevel <= 10) {
+    toast("Hulbert is starving, could you give them food?");
+  } else if (thirstLevel <= 10) {
+    toast("Hulbert is thirsty, could you give them something to drink?");
+  } else if (socialLevel <= 10) {
+    toast("Hulbert feels lonely, could you play with them?");
+  } else if ((hungerLevel <= 0) || (thirstLevel <= 0) || (socialLevel)) {
+    toast("Hulbert doesn't feel so good..")
   }
 }
 
