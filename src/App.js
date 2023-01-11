@@ -12,8 +12,6 @@ import 'react-toastify/dist/ReactToastify.css';
 
 function App() { //to-do: move button functionalities to components
 
-  //to-do: restrain need bars from going below 0, fix thirst bar
-  //to-do: if food level etc. is 99, it can go up to 101 --> fix
   //to-do: warning when some of the bars are below 10
   const [snackCount, setCount] = React.useState(0);  
 
@@ -26,10 +24,10 @@ function App() { //to-do: move button functionalities to components
 
   //food button
   const giveFood = () => {
-    if (0 < hungerLevel <= 98 ) {
+    if (hungerLevel <= 98 ) {
       setHunger(hungerLevel + 2);
-    } else if (98 < hungerLevel <= 99){
-      setHunger(hungerLevel + 1);
+    } else if (98 < hungerLevel){
+      setHunger(100);
     }
   }
 
@@ -48,8 +46,10 @@ function App() { //to-do: move button functionalities to components
       } else {
         setHunger(hungerLevel - 5);
       }
-    } else if (0 < hungerLevel <= 99) {
+    } else if (hungerLevel <= 99) {
       setHunger(hungerLevel + 1);
+    } else if (99 < hungerLevel) {
+      setHunger(100);
     }   
 }
 
@@ -63,10 +63,10 @@ const notifySnack = () => {
 
 //drink button
 const giveDrink = () => {
-  if (0 < thirstLevel <= 98 ) {
+  if (thirstLevel <= 98 ) {
       setThirst(thirstLevel + 2);
-  } else if (98 < thirstLevel <= 99){
-      setThirst(thirstLevel + 1);
+  } else if (98 < thirstLevel){
+      setThirst(100);
   }
 }
 
@@ -92,10 +92,10 @@ const notifyMilk = () => {
 
 //play button
 const givePlay = () => {
-  if (0 < socialLevel <= 98 ) {
+  if (socialLevel <= 98 ) {
     setSocial(socialLevel + 2);
-  } else if (98 < socialLevel <= 99){
-    setSocial(socialLevel + 1);
+  } else if (98 < socialLevel){
+    setSocial(100);
   }
 
   if(hungerLevel < 2) {
@@ -113,8 +113,10 @@ const notifyPlay = () => {
 
 //pet button
 const givePet = () => {
-  if (0 < socialLevel <= 99 ) {
+  if (socialLevel <= 99 ) {
     setSocial(socialLevel + 1);
+  } else if (99 < socialLevel) {
+    setSocial(100);
   }
 }
 
