@@ -8,7 +8,7 @@ import happyHulbert from './images/happy.png';
 import food from './images/food.png';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import DrinkButton from './components/Buttons/Drink/DrinkButton'
+//import DrinkButton from './components/Buttons/Drink/DrinkButton'
 
 function App() { //to-do: move button functionalities to components
 
@@ -43,7 +43,11 @@ function App() { //to-do: move button functionalities to components
   const giveSnack = () => { //to-do: reset snackCount after some time or after pressing other buttons certain number
     setCount(snackCount + 1);
     if (snackCount > 3) {
-      setHunger(hungerLevel - 5); //to-do: make loop to loose points only some levels if there's not 5 to loose
+      if(hungerLevel < 5) {
+        setHunger(0)
+      } else {
+        setHunger(hungerLevel - 5);
+      }
     } else if (hungerLevel <= 99) {
       setHunger(hungerLevel + 1);
     }   
@@ -57,11 +61,29 @@ const notifySnack = () => {
   }
 }
 
+//drink button
+const giveDrink = () => {
+  if (thirstLevel <= 98 ) {
+      setThirst(thirstLevel + 2);
+  } else if (thirstLevel <= 99){
+      setThirst(thirstLevel + 1);
+  }
+}
+
+const notifyDrink = () => {
+  if (thirstLevel >= 99 ) {
+      toast("Ugh, Hubert feels bloated from all the drinking.");
+  }
+}
 
   //milk button
 const giveMilk = () => { 
-    setThirst(thirstLevel - 5); //to-do: does it affect other levels too?, loop for when there's not 5 points to loose
-}
+    if(thirstLevel < 5) {
+      setThirst(0); 
+    } else {
+      setThirst(thirstLevel - 5); 
+    }
+  }
 
 const notifyMilk = () => {
   toast("Uh-oh, are you sure that milk is good for hedgehogs?");
@@ -76,7 +98,11 @@ const givePlay = () => {
     setSocial(socialLevel + 1);
   }
 
-  setHunger(hungerLevel - 2); //loop for when there's not 2 points to loose
+  if(hungerLevel < 2) {
+    setHunger(0); 
+  } else {
+    setHunger(hungerLevel - 2); 
+  }
 }
 
 const notifyPlay = () => {
@@ -115,12 +141,10 @@ const notifyPet = () => {
         <div style={{paddingTop: '100px', paddingLeft: '600px'}}>
             <button className='foodBtn' onClick={() => {giveFood(); notifyFood()}}></button>
             <button className='snackBtn' onClick={() => {giveSnack(); notifySnack()}}>Snack</button>
-            
+            <button className='drinkBtn' onClick={() => {giveDrink(); notifyDrink()}}>Drink</button>
             <button className='milkBtn' onClick={() => {giveMilk(); notifyMilk()}}>Milk</button>
             <button className='playBtn' onClick={() => {givePlay(); notifyPlay()}}>Play</button>
             <button className='petBtn' onClick={() => {givePet(); notifyPet()}}>Pet</button>
-            
-
         </div>
         <ToastContainer className={'comment'}
         position="bottom-left" 
