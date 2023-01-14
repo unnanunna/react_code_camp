@@ -23,6 +23,11 @@ function App() { //to-do: move button functionalities to components
   const[thirstLevel, setThirst] = React.useState(70);
   const[socialLevel, setSocial] = React.useState(40);
 
+  const addPointsLots = 2;
+  const addPointsLess = 1;
+  const removePointsLots = 5;
+  const removePointsLess = 1;
+
   const changeHulbert = ( prop ) => {
     setHulbert( prop );
 
@@ -37,9 +42,10 @@ function App() { //to-do: move button functionalities to components
       setHunger(hungerLevel + 2);
     } else if (98 < hungerLevel){
       setHunger(100);
+    } else {
+      setHunger(hungerLevel + addPointsLots);
+      changeHulbert(hulbertAte);
     }
-
-    changeHulbert(hulbertAte);
   }
 
   const notifyFood = () => {
@@ -52,128 +58,127 @@ function App() { //to-do: move button functionalities to components
   const giveSnack = () => { //to-do: reset snackCount after some time or after pressing other buttons certain number
     setCount(snackCount + 1);
 
-    if (snackCount > 3) {
-
-      if(hungerLevel < 5) {
-        setHunger(0)
-      } else {
-        setHunger(hungerLevel - 5);
-      }
-
+    if (hungerLevel < 1){
+      //hulbert is dead
+    } else if ((snackCount > 3) && (hungerLevel <= removePointsLess)) {
+      setHunger(0);
+      //hulbert dies
+    } else if (snackCount > 3) {
+      setHunger(hungerLevel - removePointsLess);
       changeHulbert(sickHulbert);
-
-    } else if (hungerLevel <= 99) {
-      setHunger(hungerLevel + 1);
-
-      changeHulbert(hulbertAte);
-    } else if (99 < hungerLevel) {
+    } else if (hungerLevel > (100 - addPointsLess)) {
       setHunger(100);
-    }   
-}
+    } else {
+      setHunger(hungerLevel + addPointsLess);
+      changeHulbert(hulbertAte);
+    }  
+  } 
 
-const notifySnack = () => {
-
-  if (snackCount > 3) {
-    toast("Hulbert feels ill from all the snacks :(");
-  } else if (hungerLevel >= 100 ) {
-    toast("Hulbert is going to burst!");
+  const notifySnack = () => {
+    if (snackCount > 3) {
+      toast("Hulbert feels ill from all the snacks :(");
+    } else if (hungerLevel >= 99 ) {
+      toast("Hulbert is going to burst!");
+    }
   }
-
-}
 
 //drink button
-const giveDrink = () => {
-
-  if (thirstLevel <= 98 ) {
-      setThirst(thirstLevel + 2);
-  } else if (98 < thirstLevel){
+  const giveDrink = () => {
+    if (thirstLevel < 1){
+      //hubert is dead
+    } else if ((100 - addPointsLots) < thirstLevel) {
       setThirst(100);
+    } else {
+      setThirst(thirstLevel + addPointsLots);
+      //changeHulbert();
+    }
   }
 
-}
-
-const notifyDrink = () => {
-  if (thirstLevel >= 99 ) {
+  const notifyDrink = () => {
+    if (thirstLevel >= 99 ) {
       toast("Ugh, Hubert feels bloated from all the drinking.");
+    }
   }
-}
 
   //milk button
-const giveMilk = () => { 
+  const giveMilk = () => { 
 
-    if(thirstLevel < 5) {
+    if(thirstLevel <= removePointsLots) {
+      //hulbert is dead or stays dead
       setThirst(0); 
     } else {
-      setThirst(thirstLevel - 5); 
-    }
-
+      setThirst(thirstLevel - removePointsLots); 
       changeHulbert(sickHulbert);
+    } 
   }
 
-const notifyMilk = () => {
-  toast("Uh-oh, are you sure that milk is good for hedgehogs?");
+  const notifyMilk = () => {
+    toast("Uh-oh, are you sure that milk is good for hedgehogs?");
   }
 
 
 //play button
-const givePlay = () => {
+  const givePlay = () => {
 
-  if (socialLevel <= 98 ) {
-    setSocial(socialLevel + 2);
-  } else if (98 < socialLevel){
-    setSocial(100);
+    if (socialLevel < 1) {
+      //hulbert is dead
+    } else if (hungerLevel < removePointsLess) {
+      //hulbert is dead or stays dead
+      setHunger(0);
+    } else if ((100 - addPointsLots) < socialLevel) {
+      setSocial(100);
+      setHunger(hungerLevel - removePointsLess);
+    } else {
+      setSocial(socialLevel + addPointsLots);
+      setHunger(hungerLevel - removePointsLess);
+      //setHulbert
+    }
   }
 
-  if(hungerLevel < 2) {
-    setHunger(0); 
-  } else {
-    setHunger(hungerLevel - 2); 
+  const notifyPlay = () => {
+    if (socialLevel >= 99 ) {
+      toast("Hulbert wants some time alone...");
+    }
   }
-
-}
-
-const notifyPlay = () => {
-  if (socialLevel >= 99 ) {
-    toast("Hulbert wants some time alone...");
-  }
-}
 
 //pet button
-const givePet = () => {
+  const givePet = () => {
 
-  if (socialLevel <= 99 ) {
-    setSocial(socialLevel + 1);
-  } else if (99 < socialLevel) {
-    setSocial(100);
+    if (socialLevel < 1){
+      //hubert is dead
+    } else if ((100 - addPointsLess) < socialLevel) {
+      setSocial(100);
+    } else {
+      setSocial(socialLevel + addPointsLess);
+      //setHulbert
+    }
   }
 
-}
-
-const notifyPet = () => {
-  if (socialLevel >= 99 ) {
-    toast("Hulbert feels suffocated by your love!");
+  const notifyPet = () => {
+    if (socialLevel >= 99 ) {
+      toast("Hulbert feels suffocated by your love!");
+    }
   }
-}
 
-const dead = () => {
-  if ((hungerLevel <= 0) || (thirstLevel <= 0) || (socialLevel)) {
-    setHunger(0);
-    setThirst(0);
-    setSocial(0);
+  const dead = () => {
+    if ((hungerLevel <= 0) || (thirstLevel <= 0) || (socialLevel)) {
+      setHunger(0);
+      setThirst(0);
+      setSocial(0);
+    }
   }
-}
 
-const notifyHealth = () => {
-  if (hungerLevel <= 10) {
-    toast("Hulbert is starving, could you give them food?");
-  } else if (thirstLevel <= 10) {
-    toast("Hulbert is thirsty, could you give them something to drink?");
-  } else if (socialLevel <= 10) {
-    toast("Hulbert feels lonely, could you play with them?");
-  } else if ((hungerLevel <= 0) || (thirstLevel <= 0) || (socialLevel)) {
-    toast("Hulbert doesn't feel so good..")
+  const notifyHealth = () => {
+    if (hungerLevel <= 10) {
+      toast("Hulbert is starving, could you give them food?");
+    } else if (thirstLevel <= 10) {
+      toast("Hulbert is thirsty, could you give them something to drink?");
+    } else if (socialLevel <= 10) {
+      toast("Hulbert feels lonely, could you play with them?");
+    } else if ((hungerLevel <= 0) || (thirstLevel <= 0) || (socialLevel)) {
+      toast("Hulbert doesn't feel so good..")
+    }
   }
-}
 
 //to-do: make buttons' placements dependent on need bars
   return (
