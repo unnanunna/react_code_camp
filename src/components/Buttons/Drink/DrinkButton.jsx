@@ -4,25 +4,23 @@ import {toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 
-const DrinkButton = ({thirstLevel, setThirst}) => {
+const DrinkButton = ({thirstLevel, setThirst}) => { //to-do: how to excecute death from different file
 
       //drink button
-    const giveDrink = () => {
-        if (thirstLevel <= 98 ) {
-            setThirst(thirstLevel + 2);
-        } else if (thirstLevel <= 99){
-            setThirst(thirstLevel + 1);
+      const giveDrink = () => {
+        if (thirstLevel < 1){
+          dead();
+        } else if ((100 - addPointsLots) < thirstLevel) {
+          setThirst(100);
+          toast("Ugh, Hubert feels bloated from all the drinking.");
+        } else {
+          setThirst(thirstLevel + addPointsLots);
+          //changeHulbert();
         }
-    }
-
-    const notifyDrink = () => {
-        if (thirstLevel >= 99 ) {
-            toast("Ugh, Hubert feels bloated from all the drinking.");
-        }
-    }
+      }
 
     return (
-        <button type='button'></button>
+      <button className='drinkBtn' onClick={() => {giveDrink();}}></button>
     )
 }
 
