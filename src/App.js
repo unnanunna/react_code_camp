@@ -26,6 +26,7 @@ function App() {
 
   const [snackCount, setCount] = React.useState(0);  
   const[hulbert_pic, setHulbert] = React.useState(happyHulbert);
+  //const[hulbert_pic, setHulbert] = React.useState(sadHulbert);
 
   //need bar starting levels
   const[hungerLevel, setHunger] = React.useState(90);
@@ -45,19 +46,18 @@ function App() {
 
   const dead = () => {
     if ((hungerLevel <= 0) || (thirstLevel <= 0) || (socialLevel)) {
-      toast("Hulbert doesn't feel so good..");
-    setHunger(0);
-    setThirst(0);
-    setSocial(0);
+      setHunger(0);
+      setThirst(0);
+      setSocial(0);
     }
   }
 
   const notifyHealth = () => {
-    if (hungerLevel <= 10) {
+    if (0 < hungerLevel < 20) {
       toast("Hulbert is starving, could you give them food?");
-    } else if (thirstLevel <= 10) {
+    } else if (0 < thirstLevel < 20) {
       toast("Hulbert is thirsty, could you give them something to drink?");
-    } else if (socialLevel <= 10) {
+    } else if (0 < socialLevel < 20) {
       toast("Hulbert feels lonely, could you play with them?");
     }
   }
@@ -76,9 +76,9 @@ function App() {
         <img className='socialIcon' src={socialIcon} />
 
         <div style={{paddingTop: '90px', paddingLeft: '100px', position: 'absolute'}}>
-          <HungerBar hungerLevel={hungerLevel} setHunger={setHunger}/>
-          <ThirstBar thirstLevel={thirstLevel} setThirst={setThirst}/>
-          <SocialBar socialLevel={socialLevel} setSocial={setSocial}/>
+          <HungerBar hungerLevel={hungerLevel} setHunger={setHunger} dead={dead} notifyHealth={notifyHealth}/>
+          <ThirstBar thirstLevel={thirstLevel} setThirst={setThirst} dead={dead} notifyHealth={notifyHealth}/>
+          <SocialBar socialLevel={socialLevel} setSocial={setSocial} dead={dead} notifyHealth={notifyHealth}/>
         </div>
         <div style={{paddingTop: '100px', paddingLeft: '600px'}}>
             <FoodButton hungerLevel={hungerLevel} setHunger={setHunger} changeHulbert={changeHulbert} dead={dead} addPointsLots={addPointsLots} hulbertAte={hulbertAte}/>
