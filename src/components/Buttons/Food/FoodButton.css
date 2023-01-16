@@ -1,0 +1,16 @@
+
+.foodBtn {
+    position: absolute;
+    right: 300px; 
+    top: 100px;
+    cursor: pointer;
+    background: url('/src/images/food.png');
+    background-repeat: no-repeat;
+    height: 65px;
+    width: 65px;
+    border: none;
+  }
+  
+  .foodBtn:hover {
+    opacity: 0.8;
+  }

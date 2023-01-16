@@ -1,0 +1,16 @@
+
+.playBtn {
+    position: absolute;
+    right: 300px;
+    top: 400px;
+    cursor: pointer;
+    background: url('/src/images/play.png');
+    background-repeat: no-repeat;
+    height: 65px;
+    width: 65px;
+    border: none;
+  }
+  
+  .playBtn:hover {
+    opacity: 0.8;
+  }

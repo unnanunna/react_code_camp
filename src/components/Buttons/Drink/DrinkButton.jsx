@@ -1,47 +1,26 @@
-import React from "react";
+import React from 'react';
 import './DrinkButton.css';
-import {toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast } from 'react-toastify';
 
+const DrinkButton = ({ thirstLevel, setThirst, changeHulbert, dead, addPointsLots }) => {
 
-const DrinkButton = ({thirstLevel, setThirst}) => {
-
-      //drink button
     const giveDrink = () => {
-        if (thirstLevel <= 98 ) {
-            setThirst(thirstLevel + 2);
-        } else if (thirstLevel <= 99){
-            setThirst(thirstLevel + 1);
-        }
-    }
 
-    const notifyDrink = () => {
-        if (thirstLevel >= 99 ) {
-            toast("Ugh, Hubert feels bloated from all the drinking.");
+        if (thirstLevel < 1){
+          dead();
+        } else if ((100 - addPointsLots) < thirstLevel) {
+          setThirst(100);
+          toast("Ugh, Hubert feels bloated from all the drinking.");
+        } else {
+          setThirst(thirstLevel + addPointsLots);
+          //changeHulbert();
         }
-    }
+
+      }
 
     return (
-        <button type='button'></button>
+        <button className='drinkBtn' onClick={() => {giveDrink();}}> </button>
     )
-}
+  }
 
-export default DrinkButton;
-/*
-import React from "react";
-import './HungerBar.css';
-
-const HungerBar = ({ hungerLevel }) => {
-
-
-    return (
-        <div className="fullHungerBar">
-            <div className="hungerLevel" style={{width: `${hungerLevel}%`}}>
-                <span>{`${hungerLevel}%`}</span>
-            </div>
-        </div>
-    )
-}
-
-export default HungerBar;
-*/
+  export default DrinkButton;

@@ -1,0 +1,16 @@
+
+.snackBtn{
+    position: absolute;
+    right: 200px;
+    top: 150px;
+    cursor: pointer;
+    background: url('/src/images/snack.png');
+    background-repeat: no-repeat;
+    height: 65px;
+    width: 65px;
+    border: none;
+  }
+  
+  .snackBtn:hover {
+    opacity: 0.8;
+  }

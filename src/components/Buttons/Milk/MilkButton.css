@@ -1,0 +1,16 @@
+
+.milkBtn {
+    position: absolute;
+    right: 100px;
+    top: 300px;
+    cursor: pointer;
+    background: url('/src/images/milk.png');
+    background-repeat: no-repeat;
+    height: 65px;
+    width: 65px;
+    border: none;
+  }
+  
+  .milkBtn:hover {
+    opacity: 0.8;
+  }

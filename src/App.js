@@ -4,18 +4,27 @@ import React from 'react';
 import HungerBar from './components/NeedBars/Hunger/HungerBar';
 import ThirstBar from './components/NeedBars/Thirst/ThirstBar';
 import SocialBar from './components/NeedBars/Social/SocialBar';
+import FoodButton from './components/Buttons/Food/FoodButton';
+import SnackButton from './components/Buttons/Snack/SnackButton';
+import DrinkButton from './components/Buttons/Drink/DrinkButton';
+import MilkButton from './components/Buttons/Milk/MilkButton';
+import PetButton from './components/Buttons/Pet/PetButton';
+import PlayButton from './components/Buttons/Play/PlayButton';
 import happyHulbert from './images/happy.png';
 import hulbertAte from './images/eating.png';
 import sickHulbert from './images/sick.png';
+import sadHulbert from './images/sad.png';
+import hulbertPlayed from './images/playing.png';
+import hulbertPetted from './images/petted.png';
+import foodIcon from './images/food_icon.png';
+import waterIcon from './images/water_icon.png';
+import socialIcon from './images/social_icon.png';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-//import DrinkButton from './components/Buttons/Drink/DrinkButton'
 
-function App() { //to-do: move button functionalities to components
+function App() {
 
-  //to-do: warning when some of the bars are below 10
   const [snackCount, setCount] = React.useState(0);  
-
   const[hulbert_pic, setHulbert] = React.useState(happyHulbert);
 
   //need bar starting levels
@@ -32,108 +41,6 @@ function App() { //to-do: move button functionalities to components
     setHulbert( prop );
 
     setTimeout(() => {setHulbert(happyHulbert)}, 2000);
-  }
-
-
-  //food button
-  const giveFood = () => {
-    if (hungerLevel < 1){
-      //hubert is dead
-      dead();
-    } else if ((100 - addPointsLots) < hungerLevel) {
-      setHunger(100);
-      toast("Hulbert is going to burst!");
-    } else {
-      setHunger(hungerLevel + addPointsLots);
-      changeHulbert(hulbertAte);
-    }
-  }
-
-  //snack button
-  const giveSnack = () => { //to-do: reset snackCount after some time or after pressing other buttons certain number
-    setCount(snackCount + 1);
-
-    if (hungerLevel < 1){
-      //hulbert is dead
-      dead();
-    } else if ((snackCount > 3) && (hungerLevel <= removePointsLess)) {
-      setHunger(0);
-      //hulbert dies
-      dead();
-    } else if (snackCount > 3) {
-      setHunger(hungerLevel - removePointsLess);
-      toast("Hulbert feels ill from all the snacks :(");
-      changeHulbert(sickHulbert);
-    } else if (hungerLevel > (100 - addPointsLess)) {
-      setHunger(100);
-      toast("Hulbert is going to burst!");
-    } else {
-      setHunger(hungerLevel + addPointsLess);
-      changeHulbert(hulbertAte);
-    }  
-  } 
-
-//drink button
-  const giveDrink = () => {
-    if (thirstLevel < 1){
-      dead();
-    } else if ((100 - addPointsLots) < thirstLevel) {
-      setThirst(100);
-      toast("Ugh, Hubert feels bloated from all the drinking.");
-    } else {
-      setThirst(thirstLevel + addPointsLots);
-      //changeHulbert();
-    }
-  }
-
-  //milk button
-  const giveMilk = () => { 
-
-    if(thirstLevel <= removePointsLots) {
-      //hulbert is dead or stays dead
-      setThirst(0); 
-      dead();
-    } else {
-      setThirst(thirstLevel - removePointsLots); 
-      toast("Uh-oh, are you sure that milk is good for hedgehogs?");
-      changeHulbert(sickHulbert);
-    } 
-  }
-
-//play button
-  const givePlay = () => {
-
-    if (socialLevel < 1) {
-      //hulbert is dead
-      dead();
-    } else if (hungerLevel < removePointsLess) {
-      setHunger(0);
-      dead();
-      //hulbert is dead
-    } else if ((100 - addPointsLots) < socialLevel) {
-      setSocial(100);
-      setHunger(hungerLevel - removePointsLess);
-      toast("Hulbert wants some time alone...");
-    } else {
-      setSocial(socialLevel + addPointsLots);
-      setHunger(hungerLevel - removePointsLess);
-      //setHulbert
-    }
-  }
-
-//pet button
-  const givePet = () => {
-
-    if (socialLevel < 1){
-      //hulbert is dead
-      dead();
-    } else if ((100 - addPointsLess) < socialLevel) {
-      setSocial(100);
-      toast("Hulbert feels suffocated by your love!");
-    } else {
-      setSocial(socialLevel + addPointsLess);
-      //setHulbert
-    }
   }
 
   const dead = () => {
@@ -161,21 +68,25 @@ function App() { //to-do: move button functionalities to components
         <div class="header">
           <h1>Hulbert the Hedgehog</h1>
         </div>
-        <div className='hulbert'> 
-          <img src={hulbert_pic}/>
-        </div>
-        <div style={{paddingTop: '100px', paddingLeft: '100px'}}>
+        
+        <img className='hulbert' src={hulbert_pic}/>
+        
+        <img className ='foodIcon' src={foodIcon} />
+        <img className='waterIcon' src={waterIcon} />
+        <img className='socialIcon' src={socialIcon} />
+
+        <div style={{paddingTop: '90px', paddingLeft: '100px', position: 'absolute'}}>
           <HungerBar hungerLevel={hungerLevel} setHunger={setHunger}/>
           <ThirstBar thirstLevel={thirstLevel} setThirst={setThirst}/>
           <SocialBar socialLevel={socialLevel} setSocial={setSocial}/>
         </div>
         <div style={{paddingTop: '100px', paddingLeft: '600px'}}>
-            <button className='foodBtn' onClick={() => {giveFood()}}></button>
-            <button className='snackBtn' onClick={() => {giveSnack();}}></button>
-            <button className='drinkBtn' onClick={() => {giveDrink();}}></button>
-            <button className='milkBtn' onClick={() => {giveMilk();}}></button>
-            <button className='playBtn' onClick={() => {givePlay();}}></button>
-            <button className='petBtn' onClick={() => {givePet();}}></button>
+            <FoodButton hungerLevel={hungerLevel} setHunger={setHunger} changeHulbert={changeHulbert} dead={dead} addPointsLots={addPointsLots} hulbertAte={hulbertAte}/>
+            <SnackButton hungerLevel={hungerLevel} setHunger={setHunger} changeHulbert={changeHulbert} dead={dead} addPointsLess={addPointsLess} removePointsLess={removePointsLess} snackCount={snackCount} setCount={setCount} hulbertAte={hulbertAte} sickHulbert={sickHulbert} />
+            <DrinkButton thirstLevel={thirstLevel} setThirst={setThirst} changeHulbert={changeHulbert} dead={dead} addPointsLots={addPointsLots} />
+            <MilkButton thirstLevel={thirstLevel} setThirst={setThirst} changeHulbert={changeHulbert} dead={dead} removePointsLots={removePointsLots} sickHulbert={sickHulbert} />
+            <PlayButton  socialLevel={socialLevel} hungerLevel={hungerLevel} setSocial={setSocial} setHunger={setHunger} changeHulbert={changeHulbert} dead={dead} addPointsLots={addPointsLots} removePointsLess={removePointsLess} hulbertPlayed={hulbertPlayed} />
+            <PetButton socialLevel={socialLevel} setSocial={setSocial} changeHulbert={changeHulbert} dead={dead} addPointsLess={addPointsLess} hulbertPetted={hulbertPetted} />
         </div>
         <ToastContainer className={'comment'}
         position="bottom-left" 

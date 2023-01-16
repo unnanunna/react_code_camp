@@ -1,6 +1,16 @@
-.button {
-    width: 30px;
-    height: 30px;
-    color: rgb(255, 183, 242);
-    border-radius: 30px
-}
+
+.drinkBtn {
+    position: absolute;
+    right: 100px;
+    top: 200px;
+    cursor: pointer;
+    background: url('/src/images/drink.png');
+    background-repeat: no-repeat;
+    height: 65px;
+    width: 65px;
+    border: none;
+  }
+  
+  .drinkBtn:hover {
+    opacity: 0.8;
+  }
