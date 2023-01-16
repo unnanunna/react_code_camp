@@ -45,20 +45,10 @@ function App() {
   }
 
   const dead = () => {
-    if ((hungerLevel <= 0) || (thirstLevel <= 0) || (socialLevel)) {
+    if ((hungerLevel <= 0) || (thirstLevel <= 0) || (socialLevel <= 0)) {
       setHunger(0);
       setThirst(0);
       setSocial(0);
-    }
-  }
-
-  const notifyHealth = () => {
-    if (0 < hungerLevel < 20) {
-      toast("Hulbert is starving, could you give them food?");
-    } else if (0 < thirstLevel < 20) {
-      toast("Hulbert is thirsty, could you give them something to drink?");
-    } else if (0 < socialLevel < 20) {
-      toast("Hulbert feels lonely, could you play with them?");
     }
   }
 
@@ -76,9 +66,9 @@ function App() {
         <img className='socialIcon' src={socialIcon} />
 
         <div style={{paddingTop: '90px', paddingLeft: '100px', position: 'absolute'}}>
-          <HungerBar hungerLevel={hungerLevel} setHunger={setHunger} dead={dead} notifyHealth={notifyHealth}/>
-          <ThirstBar thirstLevel={thirstLevel} setThirst={setThirst} dead={dead} notifyHealth={notifyHealth}/>
-          <SocialBar socialLevel={socialLevel} setSocial={setSocial} dead={dead} notifyHealth={notifyHealth}/>
+          <HungerBar hungerLevel={hungerLevel} setHunger={setHunger} dead={dead}/>
+          <ThirstBar thirstLevel={thirstLevel} setThirst={setThirst} dead={dead}/>
+          <SocialBar socialLevel={socialLevel} setSocial={setSocial} dead={dead}/>
         </div>
         <div style={{paddingTop: '100px', paddingLeft: '600px'}}>
             <FoodButton hungerLevel={hungerLevel} setHunger={setHunger} changeHulbert={changeHulbert} dead={dead} addPointsLots={addPointsLots} hulbertAte={hulbertAte}/>
