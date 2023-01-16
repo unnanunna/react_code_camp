@@ -22,13 +22,25 @@ import socialIcon from './images/social_icon.png';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+//********Future to-do's*********
+//-change header style/color for something more lively
+//-sad Hulbert when need levels under 20
+//-dead Hulbert
+//-death announcement 
+//-restart-button? --> set levels back to starting point
+//-tooltips
+//-snack count resets after time
+
+//-make ui scalable
+//-sound effects?
+//-customization (hats...)?
+
 function App() {
 
   const [snackCount, setCount] = React.useState(0);  
   const[hulbert_pic, setHulbert] = React.useState(happyHulbert);
   //const[hulbert_pic, setHulbert] = React.useState(sadHulbert);
 
-  //need bar starting levels
   const[hungerLevel, setHunger] = React.useState(90);
   const[thirstLevel, setThirst] = React.useState(70);
   const[socialLevel, setSocial] = React.useState(40);
@@ -52,7 +64,6 @@ function App() {
     }
   }
 
-//to-do: make buttons' placements dependent on need bars
   return (
       <div className="App" >
         <div class="header">
