@@ -20,9 +20,7 @@ const PlayButton = ({ socialLevel, hungerLevel, setSocial, setHunger, changeHulb
         } else {
           setSocial(socialLevel + addPointsLots);
           setHunger(hungerLevel - removePointsLess);
-          
           changeHulbert(hulbertPlayed);
-    
         }
       }
 
