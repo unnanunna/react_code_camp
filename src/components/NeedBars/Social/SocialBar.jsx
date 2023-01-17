@@ -26,9 +26,7 @@ const SocialBar = ({ socialLevel, setSocial, dead, changeHulbert, sadHulbert }) 
 
     return (
         <div className="fullSocialBar">
-            <div className="socialLevel" style={{width: `${socialLevel}%`}}>
-                <span>{`${socialLevel}%`}</span>
-            </div>
+            <div className="socialLevel" style={{width: `${socialLevel}%`}}></div>
         </div>
     )
 }

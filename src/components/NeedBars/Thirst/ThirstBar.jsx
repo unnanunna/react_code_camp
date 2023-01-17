@@ -26,9 +26,7 @@ const ThirstBar = ({ thirstLevel, setThirst, dead, changeHulbert, sadHulbert}) =
 
     return (
         <div className="fullThirstBar">
-            <div className="thirstLevel" style={{width: `${thirstLevel}%`}}>
-                <span>{`${thirstLevel}%`}</span>
-            </div>
+            <div className="thirstLevel" style={{width: `${thirstLevel}%`}}></div>
         </div>
     )
 }

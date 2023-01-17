@@ -1,6 +1,7 @@
 import React from 'react';
 import './PlayButton.css';
 import { toast } from 'react-toastify';
+import Tooltip from "@mui/material/Tooltip";
 
 const PlayButton = ({ socialLevel, hungerLevel, setSocial, setHunger, changeHulbert, dead, addPointsLots, removePointsLess, hulbertPlayed }) => {
 
@@ -25,7 +26,10 @@ const PlayButton = ({ socialLevel, hungerLevel, setSocial, setHunger, changeHulb
       }
 
     return (
+      <Tooltip title="Play with Hulbert" arrow>
         <button className='playBtn' onClick={() => {givePlay();}}> </button>
+      </Tooltip>
+        
     )
   }
 

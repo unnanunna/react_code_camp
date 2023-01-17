@@ -1,6 +1,7 @@
 import React from 'react';
 import './SnackButton.css';
 import { toast } from 'react-toastify';
+import Tooltip from "@mui/material/Tooltip";
 
 const SnackButton = ({ hungerLevel, setHunger, changeHulbert, dead, addPointsLess, removePointsLess, snackCount, setCount, hulbertAte, sickHulbert }) => {
 
@@ -28,7 +29,10 @@ const SnackButton = ({ hungerLevel, setHunger, changeHulbert, dead, addPointsLes
       }
 
     return (
+      <Tooltip title="Give Hulbert a snack" arrow>
         <button className='snackBtn' onClick={() => {giveSnack();}}> </button>
+      </Tooltip>
+        
     )
   }
 
