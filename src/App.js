@@ -24,8 +24,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 //********Future to-do's*********
 //-change header style/color for something more lively
-//-sad Hulbert when need levels under 20
-//-dead Hulbert
+//-dead Hulbert image
 //-death announcement 
 //-restart-button? --> set levels back to starting point
 //-tooltips
@@ -33,13 +32,13 @@ import 'react-toastify/dist/ReactToastify.css';
 
 //-make ui scalable
 //-sound effects?
+//-difficulty levels?
 //-customization (hats...)?
 
 function App() {
 
   const [snackCount, setCount] = React.useState(0);  
   const[hulbert_pic, setHulbert] = React.useState(happyHulbert);
-  //const[hulbert_pic, setHulbert] = React.useState(sadHulbert);
 
   const[hungerLevel, setHunger] = React.useState(90);
   const[thirstLevel, setThirst] = React.useState(70);
@@ -53,7 +52,7 @@ function App() {
   const changeHulbert = ( prop ) => {
     setHulbert( prop );
 
-    setTimeout(() => {setHulbert(happyHulbert)}, 2000);
+    setTimeout(() => {setHulbert(happyHulbert)}, 3000);
   }
 
   const dead = () => {
@@ -77,9 +76,9 @@ function App() {
         <img className='socialIcon' src={socialIcon} />
 
         <div style={{paddingTop: '90px', paddingLeft: '100px', position: 'absolute'}}>
-          <HungerBar hungerLevel={hungerLevel} setHunger={setHunger} dead={dead}/>
-          <ThirstBar thirstLevel={thirstLevel} setThirst={setThirst} dead={dead}/>
-          <SocialBar socialLevel={socialLevel} setSocial={setSocial} dead={dead}/>
+          <HungerBar hungerLevel={hungerLevel} setHunger={setHunger} dead={dead} changeHulbert={changeHulbert} sadHulbert={sadHulbert}/>
+          <ThirstBar thirstLevel={thirstLevel} setThirst={setThirst} dead={dead} changeHulbert={changeHulbert} sadHulbert={sadHulbert}/>
+          <SocialBar socialLevel={socialLevel} setSocial={setSocial} dead={dead} changeHulbert={changeHulbert} sadHulbert={sadHulbert}/>
         </div>
         <div style={{paddingTop: '100px', paddingLeft: '600px'}}>
             <FoodButton hungerLevel={hungerLevel} setHunger={setHunger} changeHulbert={changeHulbert} dead={dead} addPointsLots={addPointsLots} hulbertAte={hulbertAte}/>

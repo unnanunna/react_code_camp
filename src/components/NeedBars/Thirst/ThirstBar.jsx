@@ -3,7 +3,7 @@ import './ThirstBar.css';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const ThirstBar = ({ thirstLevel, setThirst, dead }) => {
+const ThirstBar = ({ thirstLevel, setThirst, dead, changeHulbert, sadHulbert}) => {
 
     React.useEffect (() => {
         const interval = setInterval(() => {
@@ -13,6 +13,7 @@ const ThirstBar = ({ thirstLevel, setThirst, dead }) => {
             } else {
                 if (thirstLevel < 20) {
                     toast("Hulbert is thirsty, could you give them something to drink?");
+                    changeHulbert(sadHulbert);
                 }
                 setThirst(thirstLevel - 2);
             }
