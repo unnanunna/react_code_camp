@@ -17,6 +17,7 @@ import sadHulbert from './images/sad.png';
 import deadHulbert from './images/dead.png';
 import hulbertPlayed from './images/playing.png';
 import hulbertPetted from './images/petted.png';
+import hulbertDrunk from './images/drinking.png';
 import foodIcon from './images/food_icon.png';
 import waterIcon from './images/water_icon.png';
 import socialIcon from './images/social_icon.png';
@@ -85,7 +86,7 @@ function App() {
         <div style={{paddingTop: '100px', paddingLeft: '600px'}}>
             <FoodButton hungerLevel={hungerLevel} setHunger={setHunger} changeHulbert={changeHulbert} dead={dead} addPointsLots={addPointsLots} hulbertAte={hulbertAte}/>
             <SnackButton hungerLevel={hungerLevel} setHunger={setHunger} changeHulbert={changeHulbert} dead={dead} addPointsLess={addPointsLess} removePointsLess={removePointsLess} snackCount={snackCount} setCount={setCount} hulbertAte={hulbertAte} sickHulbert={sickHulbert} />
-            <DrinkButton thirstLevel={thirstLevel} setThirst={setThirst} changeHulbert={changeHulbert} dead={dead} addPointsLots={addPointsLots} />
+            <DrinkButton thirstLevel={thirstLevel} setThirst={setThirst} changeHulbert={changeHulbert} dead={dead} addPointsLots={addPointsLots} hulbertDrunk={hulbertDrunk} />
             <MilkButton thirstLevel={thirstLevel} setThirst={setThirst} changeHulbert={changeHulbert} dead={dead} removePointsLots={removePointsLots} sickHulbert={sickHulbert} />
             <PlayButton  socialLevel={socialLevel} hungerLevel={hungerLevel} setSocial={setSocial} setHunger={setHunger} changeHulbert={changeHulbert} dead={dead} addPointsLots={addPointsLots} removePointsLess={removePointsLess} hulbertPlayed={hulbertPlayed} />
             <PetButton socialLevel={socialLevel} setSocial={setSocial} changeHulbert={changeHulbert} dead={dead} addPointsLess={addPointsLess} hulbertPetted={hulbertPetted} />
