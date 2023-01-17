@@ -9,6 +9,7 @@ const SocialBar = ({ socialLevel, setSocial, dead, changeHulbert, sadHulbert }) 
         const interval = setInterval(() => {
             if (socialLevel < 2) {
                 setSocial(0);
+                clearInterval(interval);
                 dead();
             } else {
                 if (socialLevel < 20) {

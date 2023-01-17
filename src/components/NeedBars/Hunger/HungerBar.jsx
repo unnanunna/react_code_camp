@@ -6,10 +6,12 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const HungerBar = ({ hungerLevel, setHunger, dead, changeHulbert, sadHulbert }) => {
 
+
     React.useEffect (() => {
         const interval = setInterval(() => {
             if (hungerLevel < 2) {
                 setHunger(0);
+                clearInterval(interval);
                 dead();
             } else {
                 if (hungerLevel < 20) {

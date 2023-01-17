@@ -9,6 +9,7 @@ const ThirstBar = ({ thirstLevel, setThirst, dead, changeHulbert, sadHulbert}) =
         const interval = setInterval(() => {
             if (thirstLevel < 2) {
                 setThirst(0);
+                clearInterval(interval);
                 dead();
             } else {
                 if (thirstLevel < 20) {

@@ -14,6 +14,7 @@ import happyHulbert from './images/happy.png';
 import hulbertAte from './images/eating.png';
 import sickHulbert from './images/sick.png';
 import sadHulbert from './images/sad.png';
+import deadHulbert from './images/dead.png';
 import hulbertPlayed from './images/playing.png';
 import hulbertPetted from './images/petted.png';
 import foodIcon from './images/food_icon.png';
@@ -24,8 +25,6 @@ import 'react-toastify/dist/ReactToastify.css';
 
 //********Future to-do's*********
 //-change header style/color for something more lively
-//-dead Hulbert image
-//-death announcement 
 //-restart-button? --> set levels back to starting point
 //-tooltips
 //-snack count resets after time
@@ -37,7 +36,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
 
-  const [snackCount, setCount] = React.useState(0);  
+  const[snackCount, setCount] = React.useState(0);  
   const[hulbert_pic, setHulbert] = React.useState(happyHulbert);
 
   const[hungerLevel, setHunger] = React.useState(90);
@@ -48,6 +47,8 @@ function App() {
   const addPointsLess = 1;
   const removePointsLots = 5;
   const removePointsLess = 1;
+
+  const deathAnnouncement = () => toast("Hulbert doesn't feel so good...", { autoClose: 15000 });
 
   const changeHulbert = ( prop ) => {
     setHulbert( prop );
@@ -60,6 +61,8 @@ function App() {
       setHunger(0);
       setThirst(0);
       setSocial(0);
+      setHulbert(deadHulbert);
+      deathAnnouncement();
     }
   }
 
@@ -88,7 +91,7 @@ function App() {
             <PlayButton  socialLevel={socialLevel} hungerLevel={hungerLevel} setSocial={setSocial} setHunger={setHunger} changeHulbert={changeHulbert} dead={dead} addPointsLots={addPointsLots} removePointsLess={removePointsLess} hulbertPlayed={hulbertPlayed} />
             <PetButton socialLevel={socialLevel} setSocial={setSocial} changeHulbert={changeHulbert} dead={dead} addPointsLess={addPointsLess} hulbertPetted={hulbertPetted} />
         </div>
-        <ToastContainer className={'comment'}
+        <ToastContainer className={'comment'} autoClose={2000}
         position="bottom-left" 
         hideProgressBar
         closeOnClick
