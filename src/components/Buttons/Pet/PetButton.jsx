@@ -1,6 +1,7 @@
 import React from 'react';
 import './PetButton.css';
 import { toast } from 'react-toastify';
+import Tooltip from "@mui/material/Tooltip";
 
 const PetButton = ({ socialLevel, setSocial, changeHulbert, dead, addPointsLess, hulbertPetted }) => {
 
@@ -20,7 +21,10 @@ const PetButton = ({ socialLevel, setSocial, changeHulbert, dead, addPointsLess,
       }
 
     return (
+      <Tooltip title="Pet Hulbert" arrow>
         <button className='petBtn' onClick={() => {givePet();}}> </button>
+      </Tooltip>
+        
     )
   }
 

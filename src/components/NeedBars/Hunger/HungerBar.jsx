@@ -27,9 +27,7 @@ const HungerBar = ({ hungerLevel, setHunger, dead, changeHulbert, sadHulbert }) 
 
     return (
         <div className="fullHungerBar">
-            <div className="hungerLevel" style={{width: `${hungerLevel}%`}}>
-                <span>{`${hungerLevel}%`}</span>
-            </div>
+            <div className="hungerLevel" style={{width: `${hungerLevel}%`}}></div>
         </div>
         )
 
