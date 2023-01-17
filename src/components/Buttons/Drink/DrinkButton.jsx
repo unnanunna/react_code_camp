@@ -2,7 +2,7 @@ import React from 'react';
 import './DrinkButton.css';
 import { toast } from 'react-toastify';
 
-const DrinkButton = ({ thirstLevel, setThirst, changeHulbert, dead, addPointsLots }) => {
+const DrinkButton = ({ thirstLevel, setThirst, changeHulbert, dead, addPointsLots, hulbertDrunk }) => {
 
     const giveDrink = () => {
 
@@ -13,7 +13,8 @@ const DrinkButton = ({ thirstLevel, setThirst, changeHulbert, dead, addPointsLot
           toast("Ugh, Hubert feels bloated from all the drinking.");
         } else {
           setThirst(thirstLevel + addPointsLots);
-          //changeHulbert();
+          
+          changeHulbert(hulbertDrunk);
         }
 
       }
