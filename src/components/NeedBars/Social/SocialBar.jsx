@@ -3,28 +3,23 @@ import './SocialBar.css';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const SocialBar = ({ socialLevel, setSocial }) => {
+const SocialBar = ({ socialLevel, setSocial, dead, changeHulbert, sadHulbert }) => {
 
     React.useEffect (() => {
         const interval = setInterval(() => {
-
-            /*if (socialLevel > 0 && socialLevel != 1) {
-                setSocial(socialLevel => socialLevel - 2);
-            } else if (socialLevel > 0 && socialLevel == 1) {
-
-            }*/
             if (socialLevel < 2) {
-                //dead
                 setSocial(0);
-                //setThirst(0);
-                //setHunger(0);
-                toast("Hulbert doesn't feel so good..");
-                //clearInterval(this.interval); //doesn't work, figure out something else
+                clearInterval(interval);
+                dead();
             } else {
+                if (socialLevel < 20) {
+                    toast("Hulbert feels lonely, could you play with them?");
+                    changeHulbert(sadHulbert);
+                }
                 setSocial(socialLevel - 2);
             }
 
-        }, 8000)
+        }, 3000)
         return () => clearInterval(interval);
     }, [socialLevel]);
 

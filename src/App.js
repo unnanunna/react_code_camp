@@ -14,6 +14,7 @@ import happyHulbert from './images/happy.png';
 import hulbertAte from './images/eating.png';
 import sickHulbert from './images/sick.png';
 import sadHulbert from './images/sad.png';
+import deadHulbert from './images/dead.png';
 import hulbertPlayed from './images/playing.png';
 import hulbertPetted from './images/petted.png';
 import hulbertDrunk from './images/drinking.png';
@@ -23,12 +24,22 @@ import socialIcon from './images/social_icon.png';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+//********Future to-do's*********
+//-change header style/color for something more lively
+//-restart-button? --> set levels back to starting point
+//-tooltips
+//-snack count resets after time
+
+//-make ui scalable
+//-sound effects?
+//-difficulty levels?
+//-customization (hats...)?
+
 function App() {
 
-  const [snackCount, setCount] = React.useState(0);  
+  const[snackCount, setCount] = React.useState(0);  
   const[hulbert_pic, setHulbert] = React.useState(happyHulbert);
 
-  //need bar starting levels
   const[hungerLevel, setHunger] = React.useState(90);
   const[thirstLevel, setThirst] = React.useState(70);
   const[socialLevel, setSocial] = React.useState(40);
@@ -38,28 +49,21 @@ function App() {
   const removePointsLots = 5;
   const removePointsLess = 1;
 
+  const deathAnnouncement = () => toast("Hulbert doesn't feel so good...", { autoClose: 15000 });
+
   const changeHulbert = ( prop ) => {
     setHulbert( prop );
 
-    setTimeout(() => {setHulbert(happyHulbert)}, 2000);
+    setTimeout(() => {setHulbert(happyHulbert)}, 3000);
   }
 
   const dead = () => {
     if ((hungerLevel <= 0) || (thirstLevel <= 0) || (socialLevel <= 0)) {
-      toast("Hulbert doesn't feel so good..");
-    setHunger(0);
-    setThirst(0);
-    setSocial(0);
-    }
-  }
-
-  const notifyHealth = () => {
-    if (hungerLevel <= 10) {
-      toast("Hulbert is starving, could you give them food?");
-    } else if (thirstLevel <= 10) {
-      toast("Hulbert is thirsty, could you give them something to drink?");
-    } else if (socialLevel <= 10) {
-      toast("Hulbert feels lonely, could you play with them?");
+      setHunger(0);
+      setThirst(0);
+      setSocial(0);
+      setHulbert(deadHulbert);
+      deathAnnouncement();
     }
   }
 
@@ -76,9 +80,9 @@ function App() {
         <img className='socialIcon' src={socialIcon} />
 
         <div style={{paddingTop: '90px', paddingLeft: '100px', position: 'absolute'}}>
-          <HungerBar hungerLevel={hungerLevel} setHunger={setHunger}/>
-          <ThirstBar thirstLevel={thirstLevel} setThirst={setThirst}/>
-          <SocialBar socialLevel={socialLevel} setSocial={setSocial}/>
+          <HungerBar hungerLevel={hungerLevel} setHunger={setHunger} dead={dead} changeHulbert={changeHulbert} sadHulbert={sadHulbert}/>
+          <ThirstBar thirstLevel={thirstLevel} setThirst={setThirst} dead={dead} changeHulbert={changeHulbert} sadHulbert={sadHulbert}/>
+          <SocialBar socialLevel={socialLevel} setSocial={setSocial} dead={dead} changeHulbert={changeHulbert} sadHulbert={sadHulbert}/>
         </div>
         <div style={{paddingTop: '100px', paddingLeft: '600px'}}>
             <FoodButton hungerLevel={hungerLevel} setHunger={setHunger} changeHulbert={changeHulbert} dead={dead} addPointsLots={addPointsLots} hulbertAte={hulbertAte}/>
@@ -88,7 +92,7 @@ function App() {
             <PlayButton  socialLevel={socialLevel} hungerLevel={hungerLevel} setSocial={setSocial} setHunger={setHunger} changeHulbert={changeHulbert} dead={dead} addPointsLots={addPointsLots} removePointsLess={removePointsLess} hulbertPlayed={hulbertPlayed} />
             <PetButton socialLevel={socialLevel} setSocial={setSocial} changeHulbert={changeHulbert} dead={dead} addPointsLess={addPointsLess} hulbertPetted={hulbertPetted} />
         </div>
-        <ToastContainer className={'comment'}
+        <ToastContainer className={'comment'} autoClose={2000}
         position="bottom-left" 
         hideProgressBar
         closeOnClick

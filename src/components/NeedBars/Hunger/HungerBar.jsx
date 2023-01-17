@@ -3,24 +3,21 @@ import './HungerBar.css';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const HungerBar = ({ hungerLevel, setHunger/*, setThirst, setSocial */}) => {
+
+const HungerBar = ({ hungerLevel, setHunger, dead, changeHulbert, sadHulbert }) => {
+
 
     React.useEffect (() => {
         const interval = setInterval(() => {
-
-            /*if (hungerLevel > 0 && hungerLevel != 1) {
-                setHunger(hungerLevel => hungerLevel - 2);
-            } else if (hungerLevel > 0 && hungerLevel == 1) {
-                setHunger(0);
-            }*/
             if (hungerLevel < 2) {
-                //dead
                 setHunger(0);
-                //setThirst(0);
-                //setSocial(0);
-                toast("Hulbert doesn't feel so good..");
-                //clearInterval(this.interval); //doesn't work, figure out something else
+                clearInterval(interval);
+                dead();
             } else {
+                if (hungerLevel < 20) {
+                    toast("Hulbert is starving, could you give them food?");
+                    changeHulbert(sadHulbert);
+                }
                 setHunger(hungerLevel - 2);
             }
                 
