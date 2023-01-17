@@ -63,7 +63,6 @@ function App() {
       setThirst(0);
       setSocial(0);
       setHulbert(deadHulbert);
-      deathAnnouncement();
     }
   }
 
@@ -80,7 +79,7 @@ function App() {
         <img className='socialIcon' src={socialIcon} />
 
         <div style={{paddingTop: '90px', paddingLeft: '100px', position: 'absolute'}}>
-          <HungerBar hungerLevel={hungerLevel} setHunger={setHunger} dead={dead} changeHulbert={changeHulbert} sadHulbert={sadHulbert}/>
+          <HungerBar hungerLevel={hungerLevel} setHunger={setHunger} dead={dead} changeHulbert={changeHulbert} sadHulbert={sadHulbert} deathAnnouncement={deathAnnouncement}/>
           <ThirstBar thirstLevel={thirstLevel} setThirst={setThirst} dead={dead} changeHulbert={changeHulbert} sadHulbert={sadHulbert}/>
           <SocialBar socialLevel={socialLevel} setSocial={setSocial} dead={dead} changeHulbert={changeHulbert} sadHulbert={sadHulbert}/>
         </div>

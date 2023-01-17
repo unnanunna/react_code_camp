@@ -4,7 +4,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 
-const HungerBar = ({ hungerLevel, setHunger, dead, changeHulbert, sadHulbert }) => {
+const HungerBar = ({ hungerLevel, setHunger, dead, changeHulbert, sadHulbert, deathAnnouncement }) => {
 
 
     React.useEffect (() => {
@@ -13,6 +13,7 @@ const HungerBar = ({ hungerLevel, setHunger, dead, changeHulbert, sadHulbert }) 
                 setHunger(0);
                 clearInterval(interval);
                 dead();
+                deathAnnouncement(); //death announcement only in here so that it doesn't pop up multiple times
             } else {
                 if (hungerLevel < 20) {
                     toast("Hulbert is starving, could you give them food?");
