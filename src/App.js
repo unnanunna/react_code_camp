@@ -76,7 +76,7 @@ function App() {
         <img className='waterIcon' src={waterIcon} />
         <img className='socialIcon' src={socialIcon} />
 
-        <div style={{paddingTop: '90px', paddingLeft: '100px', position: 'absolute'}}>
+        <div style={{paddingTop: '65px', paddingLeft: '100px', position: 'absolute'}}>
           <HungerBar hungerLevel={hungerLevel} setHunger={setHunger} dead={dead} changeHulbert={changeHulbert} sadHulbert={sadHulbert} deathAnnouncement={deathAnnouncement}/>
           <ThirstBar thirstLevel={thirstLevel} setThirst={setThirst} dead={dead} changeHulbert={changeHulbert} sadHulbert={sadHulbert}/>
           <SocialBar socialLevel={socialLevel} setSocial={setSocial} dead={dead} changeHulbert={changeHulbert} sadHulbert={sadHulbert}/>
