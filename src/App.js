@@ -25,9 +25,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 //********Future to-do's*********
-//-change header style/color for something more lively
 //-restart-button? --> set levels back to starting point
-//-tooltips
 //-snack count resets after time
 
 //-make ui scalable
