@@ -4,7 +4,8 @@ Hulbert is a happy little hedgehog that you can take care of. You have six choic
 
 Happy playing!
 
-![Hulbert the Hedgehog screenshot](../images/screenshot.png)
+<img width="960" alt="Hulbert the Hedgehog screenshot" src="https://user-images.githubusercontent.com/82028978/213288882-23047a36-45f1-4e2a-8a8a-1d28ffbc1f4f.png">
+
 
 ## Setting up the game
 
