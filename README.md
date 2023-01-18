@@ -4,7 +4,7 @@ Hulbert is a happy little hedgehog that you can take care of. You have six choic
 
 Happy playing!
 
-![Hulbert the Hedgehog screenshot](\react_code_camp\src\images\screenshot.png?raw=true "Hulbert the Hedgehog")
+![Hulbert the Hedgehog screenshot](../images/screenshot.png)
 
 ## Setting up the game
 
